@@ -21,7 +21,7 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=Cygwin_4.x-Windows
+CND_PLATFORM=$(shell $(CC) -dumpmachine)
 CND_DLIB_EXT=dll
 CND_CONF=Debug
 CND_DISTDIR=dist
@@ -52,21 +52,17 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=/home/jarojuda/boost/boost_1_53_0/stage/lib/libboost_filesystem.a /home/jarojuda/boost/boost_1_53_0/stage/lib/libboost_program_options.a /home/jarojuda/boost/boost_1_53_0/stage/lib/libboost_system.a /home/jarojuda/boost/boost_1_53_0/stage/lib/libboost_thread.a /home/jarojuda/boost/boost_1_53_0/stage/lib/libboost_wave.a -lpthread -lrt
+LDLIBSOPTIONS=/usr/lib/libboost_program_options.a /usr/lib/libboost_system.a /usr/lib/libboost_thread.a /usr/lib/libboost_wave.a /usr/lib/libboost_filesystem.a -lpthread -lrt
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /home/jarojuda/boost/boost_1_53_0/stage/lib/libboost_filesystem.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /home/jarojuda/boost/boost_1_53_0/stage/lib/libboost_program_options.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /home/jarojuda/boost/boost_1_53_0/stage/lib/libboost_system.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /home/jarojuda/boost/boost_1_53_0/stage/lib/libboost_thread.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /home/jarojuda/boost/boost_1_53_0/stage/lib/libboost_wave.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /usr/lib/libboost_filesystem.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /usr/lib/libboost_program_options.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /usr/lib/libboost_system.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /usr/lib/libboost_thread.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /usr/lib/libboost_wave.a
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
@@ -75,7 +71,7 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: ${OBJECTFILES}
 ${OBJECTDIR}/wave-xc8.o: wave-xc8.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I/home/jarojuda/boost/boost_1_53_0 -MMD -MP -MF $@.d -o ${OBJECTDIR}/wave-xc8.o wave-xc8.cpp
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF $@.d -o ${OBJECTDIR}/wave-xc8.o wave-xc8.cpp
 
 # Subprojects
 .build-subprojects:

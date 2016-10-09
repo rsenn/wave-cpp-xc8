@@ -21,7 +21,7 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=GNU-Linux-x86
+CND_PLATFORM=$(shell $(CC) -dumpmachine)
 CND_DLIB_EXT=so
 CND_CONF=Release
 CND_DISTDIR=dist
@@ -52,7 +52,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=
+LDLIBSOPTIONS=/usr/lib/libboost_program_options.a /usr/lib/libboost_system.a /usr/lib/libboost_thread.a /usr/lib/libboost_wave.a /usr/lib/libboost_filesystem.a -lpthread -lrt
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
