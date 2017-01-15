@@ -6,7 +6,6 @@
 #
 # This makefile implements configuration specific macros and targets.
 
-
 # Environment
 MKDIR=mkdir
 CP=cp
@@ -19,6 +18,8 @@ CCC=g++
 CXX=g++
 FC=gfortran
 AS=as
+
+prefix := $(shell ${CC} -print-search-dirs|sed -n "/^libraries/ { s,.*=,, ; s,/bin.*,, ; s,/lib.*,,; p }")
 
 # Macros
 CND_PLATFORM=$(shell $(CC) -dumpmachine)
@@ -52,26 +53,27 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=/usr/lib/libboost_program_options.a /usr/lib/libboost_system.a /usr/lib/libboost_thread.a /usr/lib/libboost_wave.a /usr/lib/libboost_filesystem.a -lpthread -lrt
+LDFLAGS=-static-libgcc -static-libstdc++
+LDLIBSOPTIONS=${prefix}/lib/libboost_program_options.a ${prefix}/lib/libboost_system.a ${prefix}/lib/libboost_thread.a ${prefix}/lib/libboost_wave.a ${prefix}/lib/libboost_filesystem.a -lpthread
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /usr/lib/libboost_filesystem.a
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /usr/lib/libboost_program_options.a
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /usr/lib/libboost_system.a
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /usr/lib/libboost_thread.a
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: /usr/lib/libboost_wave.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: ${prefix}/lib/libboost_filesystem.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: ${prefix}/lib/libboost_program_options.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: ${prefix}/lib/libboost_system.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: ${prefix}/lib/libboost_thread.a
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: ${prefix}/lib/libboost_wave.a
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8 ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} ${LDFLAGS} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/wave-xc8.o: wave-xc8.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF $@.d -o ${OBJECTDIR}/wave-xc8.o wave-xc8.cpp
+	$(COMPILE.cc) -g -I${prefix}/include/boost -MMD -MP -MF $@.d -o ${OBJECTDIR}/wave-xc8.o wave-xc8.cpp
 
 # Subprojects
 .build-subprojects:
