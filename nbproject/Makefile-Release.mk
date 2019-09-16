@@ -40,11 +40,11 @@ OBJECTFILES= \
 
 
 # C Compiler Flags
-CFLAGS=
+CFLAGS=-w
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=-w
+CXXFLAGS=-w
 
 # Fortran Compiler Flags
 FFLAGS=
