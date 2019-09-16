@@ -67,7 +67,7 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/wave-xc8: ${OBJECTFILES}
 ${OBJECTDIR}/wave-xc8.o: wave-xc8.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/wave-xc8.o wave-xc8.cpp
+	$(COMPILE.cc) -Os -MMD -MP -MF $@.d -o ${OBJECTDIR}/wave-xc8.o wave-xc8.cpp
 
 # Subprojects
 .build-subprojects:
